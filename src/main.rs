@@ -31,8 +31,9 @@ fn main() {
                     base64::encode(&private),
                     &public_b64
                 );
-                return true;
+                true
+            } else {
+                false
             }
-            return false;
         }).any(|good| good);
 }
