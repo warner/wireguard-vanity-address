@@ -1,0 +1,9 @@
+[package]
+name = "wireguard-vanity-address"
+version = "0.1.0"
+authors = ["Brian Warner <warner@lothar.com>"]
+
+[dependencies]
+base64 = "0.10"
+rand = "0.6.0"
+x25519-dalek = { version = "0.3", default-features = false, features = ["std", "u64_backend"] }
