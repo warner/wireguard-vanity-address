@@ -30,7 +30,7 @@ fn main() {
             //if public_b64.starts_with(&prefix) {
             if public_b64[..WITHIN].to_ascii_lowercase().contains(&prefix) {
                 println!(
-                    "private {}, public {}",
+                    "private {}  public {}",
                     base64::encode(&private),
                     &public_b64
                 );
