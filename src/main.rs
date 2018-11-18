@@ -14,10 +14,13 @@ fn main() {
     const WITHIN: usize = 10;
     let offsets: u64 = (WITHIN as u64) - len;
     let expected: u64 = 2u64.pow(5).pow(len as u32) / offsets;
-    let trials = expected * 10;
-    println!("prefix: {}, expect {} trials", prefix, expected);
+    println!(
+        "prefix: {}, expect {} trials, Ctrl-C to stop",
+        prefix, expected
+    );
 
-    (0..trials)
+    // 1M trials takes about 10s on my laptop, so let it run for 1000s
+    let _: Vec<bool> = (0..100_000_000)
         .into_par_iter()
         .map(|_| {
             let mut rng = thread_rng();
@@ -35,5 +38,6 @@ fn main() {
             } else {
                 false
             }
-        }).any(|good| good);
+        }).filter(|good| *good)
+        .collect();
 }
