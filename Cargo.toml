@@ -2,6 +2,10 @@
 name = "wireguard-vanity-address"
 version = "0.1.0"
 authors = ["Brian Warner <warner@lothar.com>"]
+description = "Find Wireguard VPN keypairs with a specific readable string"
+license = "MIT"
+readme = "README.md"
+categories = ["cryptography"]
 
 [dependencies]
 rayon = "1.0"
