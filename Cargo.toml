@@ -6,6 +6,13 @@ description = "Find Wireguard VPN keypairs with a specific readable string"
 license = "MIT"
 readme = "README.md"
 categories = ["cryptography"]
+documentation = "https://docs.rs/wireguard-vanity-address"
+homepage = "https://github.com/warner/wireguard-vanity-address"
+repository = "https://github.com/warner/wireguard-vanity-address"
+exclude = [
+    "**/.gitignore",
+    ".gitignore",
+]
 
 [dependencies]
 rayon = "1.0"
