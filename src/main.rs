@@ -26,6 +26,9 @@ fn main() {
             let mut rng = thread_rng();
             let mut private = [0u8; 32];
             rng.try_fill_bytes(&mut private).unwrap();
+            private[0] &= 248;
+            private[31] &= 127;
+            private[31] |= 64;
             let public = x25519(private, X25519_BASEPOINT_BYTES);
             let public_b64 = base64::encode(&public);
             //if public_b64.starts_with(&prefix) {
