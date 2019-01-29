@@ -4,7 +4,6 @@ Generate Wireguard keypairs with a given prefix string.
 
 [![Build Status][build-status-image]][build-status-url]
 [![Deps][deps-status-image]][deps-status-url]
-[![Codecov][codecov-image]][codecov-url]
 [![Is-It-Maintained-Resolution-Time][iim-resolution-image]][iim-resolution-url]
 [![Is-It-Maintained-Open-Issues][iim-open-image]][iim-open-url]
 [![Crates.io][crates-io-image]][crates-io-url]
@@ -15,8 +14,6 @@ Generate Wireguard keypairs with a given prefix string.
 [build-status-url]: https://travis-ci.org/warner/wireguard-vanity-address
 [deps-status-image]: https://deps.rs/repo/github/warner/wireguard-vanity-address/status.svg
 [deps-status-url]: https://deps.rs/repo/github/warner/wireguard-vanity-address
-[codecov-image]: https://codecov.io/gh/warner/wireguard-vanity-address/branch/master/graph/badge.svg
-[codecov-url]: https://codecov.io/gh/warner/wireguard-vanity-address
 [crates-io-image]: https://img.shields.io/crates/v/wireguard-vanity-address.svg
 [crates-io-url]: https://crates.io/crates/wireguard-vanity-address
 [docs-image]: https://docs.rs/wireguard-vanity-address/badge.svg
