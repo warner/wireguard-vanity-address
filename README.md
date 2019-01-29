@@ -2,6 +2,32 @@
 
 Generate Wireguard keypairs with a given prefix string.
 
+[![Build Status][build-status-image]][build-status-url]
+[![Deps][deps-status-image]][deps-status-url]
+[![Codecov][codecov-image]][codecov-url]
+[![Is-It-Maintained-Resolution-Time][iim-resolution-image]][iim-resolution-url]
+[![Is-It-Maintained-Open-Issues][iim-open-image]][iim-open-url]
+[![Crates.io][crates-io-image]][crates-io-url]
+[![Docs.rs][docs-image]][docs-url]
+[![License][license-image]][license-url]
+
+[build-status-image]: https://travis-ci.org/warner/wireguard-vanity-address.rs.svg?branch=master
+[build-status-url]: https://travis-ci.org/warner/wireguard-vanity-address.rs
+[deps-status-image]: https://deps.rs/repo/github/warner/wireguard-vanity-address.rs/status.svg
+[deps-status-url]: https://deps.rs/repo/github/warner/wireguard-vanity-address.rs
+[codecov-image]: https://codecov.io/gh/warner/wireguard-vanity-address.rs/branch/master/graph/badge.svg
+[codecov-url]: https://codecov.io/gh/warner/wireguard-vanity-address.rs
+[crates-io-image]: https://img.shields.io/crates/v/wireguard-vanity-address.svg
+[crates-io-url]: https://crates.io/crates/wireguard-vanity-address
+[docs-image]: https://docs.rs/wireguard-vanity-address/badge.svg
+[docs-url]: https://docs.rs/wireguard-vanity-address
+[license-image]: https://img.shields.io/crates/l/wireguard-vanity-address.svg
+[license-url]: LICENSE
+[iim-resolution-image]: http://isitmaintained.com/badge/resolution/warner/wireguard-vanity-address.rs.svg
+[iim-resolution-url]: http://isitmaintained.com/project/warner/wireguard-vanity-address.rs
+[iim-open-image]: http://isitmaintained.com/badge/open/warner/wireguard-vanity-address.rs.svg
+[iim-open-url]: http://isitmaintained.com/project/warner/wireguard-vanity-address.rs
+
 The [Wireguard VPN](https://www.wireguard.com/) uses Curve25519 keypairs, and
 displays the Base64-encoded public key in status displays. I found it hard to
 remember which key goes with which target, and the config file doesn't really
