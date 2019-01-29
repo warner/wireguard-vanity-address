@@ -1,0 +1,35 @@
+language: rust
+
+#cache: cargo
+# cache less, per https://levans.fr/rust_travis_cache.html
+cache:
+  directories:
+    - /home/travis/.cargo
+
+rust:
+  - stable
+  - beta
+  - nightly
+
+matrix:
+  include:
+    - rust: 1.32.0 # lock down for consistent rustfmt behavior
+      env: RUSTFMT
+      install:
+        - rustup component add rustfmt
+      script:
+        - cargo fmt -- --check
+    - rust: 1.32.0
+      env: CLIPPY
+      install:
+        - rustup component add clippy
+      script:
+        - cargo clippy
+
+before_cache: |
+  rm -rf /home/travis/.cargo/registry
+
+script:
+  - cargo clean
+  - cargo build --verbose --all
+  - cargo test --verbose --all
