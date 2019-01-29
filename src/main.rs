@@ -3,10 +3,10 @@ extern crate rand;
 extern crate rayon;
 extern crate x25519_dalek;
 
-use rand::thread_rng;
+use rand::{thread_rng, RngCore};
 use rayon::prelude::*;
 use std::env;
-use x25519_dalek as x25519;
+use x25519_dalek::{x25519, X25519_BASEPOINT_BYTES};
 
 fn main() {
     let prefix = env::args().nth(1).unwrap().to_ascii_lowercase();
@@ -24,8 +24,12 @@ fn main() {
         .into_par_iter()
         .map(|_| {
             let mut rng = thread_rng();
-            let private = x25519::generate_secret(&mut rng);
-            let public = x25519::generate_public(&private).to_bytes();
+            let mut private = [0u8; 32];
+            rng.try_fill_bytes(&mut private).unwrap();
+            private[0] &= 248;
+            private[31] &= 127;
+            private[31] |= 64;
+            let public = x25519(private, X25519_BASEPOINT_BYTES);
             let public_b64 = base64::encode(&public);
             //if public_b64.starts_with(&prefix) {
             if public_b64[..WITHIN].to_ascii_lowercase().contains(&prefix) {
@@ -38,6 +42,7 @@ fn main() {
             } else {
                 false
             }
-        }).filter(|good| *good)
+        })
+        .filter(|good| *good)
         .collect();
 }
