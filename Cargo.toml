@@ -15,6 +15,9 @@ exclude = [
     ".gitignore",
 ]
 
+[badges]
+travis-ci = { repository = "warner/wireguard-vanity-address" }
+
 [dependencies]
 rayon = "1.0"
 base64 = "0.10"
