@@ -1,8 +1,4 @@
-extern crate base64;
-extern crate rand;
-extern crate rayon;
-extern crate x25519_dalek;
-
+use base64;
 use rand::{thread_rng, RngCore};
 use rayon::prelude::*;
 use std::env;
