@@ -2,7 +2,7 @@ use base64;
 use rand::{thread_rng, RngCore};
 use rayon::prelude::*;
 use std::env;
-use x25519_dalek::{x25519, X25519_BASEPOINT_BYTES};
+use x25519_dalek::{StaticSecret, PublicKey};
 
 fn main() {
     let prefix = env::args().nth(1).unwrap().to_ascii_lowercase();
@@ -20,18 +20,14 @@ fn main() {
         .into_par_iter()
         .map(|_| {
             let mut rng = thread_rng();
-            let mut private = [0u8; 32];
-            rng.try_fill_bytes(&mut private).unwrap();
-            private[0] &= 248;
-            private[31] &= 127;
-            private[31] |= 64;
-            let public = x25519(private, X25519_BASEPOINT_BYTES);
-            let public_b64 = base64::encode(&public);
+            let private = StaticSecret::new(&mut rng);
+            let public = PublicKey::from(&private);
+            let public_b64 = base64::encode(public.as_bytes());
             //if public_b64.starts_with(&prefix) {
             if public_b64[..WITHIN].to_ascii_lowercase().contains(&prefix) {
                 println!(
                     "private {}  public {}",
-                    base64::encode(&private),
+                    base64::encode(&private.to_bytes()),
                     &public_b64
                 );
                 true
