@@ -22,4 +22,4 @@ travis-ci = { repository = "warner/wireguard-vanity-address" }
 rayon = "1.0"
 base64 = "0.10"
 rand = "0.6.0"
-x25519-dalek = "0.4.5"
+x25519-dalek = "0.5.1"
