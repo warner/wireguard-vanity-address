@@ -1,6 +1,6 @@
 [package]
 name = "wireguard-vanity-address"
-version = "0.3.1-alpha.0"
+version = "0.3.1"
 edition = "2018"
 authors = ["Brian Warner <warner@lothar.com>"]
 description = "Find Wireguard VPN keypairs with a specific readable string"
