@@ -24,6 +24,9 @@ base64 = "0.10"
 rand = "0.6.0"
 x25519-dalek = "0.5.1"
 
+[dev-dependencies]
+bencher = "0.1"
+
 [lib]
 name = "wireguard_vanity_lib"
 path = "src/lib.rs"
@@ -31,3 +34,7 @@ path = "src/lib.rs"
 [[bin]]
 name = "wireguard-vanity-address"
 path = "src/bin.rs"
+
+[[bench]]
+name = "keygen"
+harness = false
