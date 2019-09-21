@@ -2,6 +2,11 @@ use rayon::prelude::*;
 use std::env;
 use wireguard_vanity_lib::trial;
 
+fn print(res: (String, String)) {
+    let (private_b64, public_b64) = res;
+    println!("private {}  public {}", &private_b64, &public_b64);
+}
+
 fn main() {
     let prefix = env::args().nth(1).unwrap().to_ascii_lowercase();
     let len = prefix.len() as u64;
@@ -12,11 +17,12 @@ fn main() {
         "prefix: {}, expect {} trials, Ctrl-C to stop",
         prefix, expected
     );
+    //let mut stdout = io::stdout;
 
     // 1M trials takes about 10s on my laptop, so let it run for 1000s
-    let _: Vec<bool> = (0..100_000_000)
+    (0..100_000_000)
         .into_par_iter()
         .map(|_| trial(&prefix, WITHIN))
-        .filter(|good| *good)
-        .collect();
+        .filter_map(|r| r)
+        .for_each(print);
 }
