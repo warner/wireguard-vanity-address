@@ -79,7 +79,7 @@ parallelize across all available cores, achieving 240k keys per second.
 
 Only a tiny fraction of those trial keys will match the search string. Each
 character of the target string reduces this fraction by a factor of about 32
-(case-folded base64 encoding). By allowing the match to occur anywhere in the
+(case-folded base64 encoding). By allowing the match to start anywhere in the
 first ten letters, we increase the hit rate by about 10x.
 
 A four-character string like `dave` means only one out of every (roughly)
