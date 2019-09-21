@@ -1,13 +1,19 @@
 use rayon::prelude::*;
 use std::env;
+use std::io::{self, Write};
 use wireguard_vanity_lib::trial;
 
-fn print(res: (String, String)) {
+fn print(res: (String, String)) -> Result<(), io::Error> {
     let (private_b64, public_b64) = res;
-    println!("private {}  public {}", &private_b64, &public_b64);
+    writeln!(
+        io::stdout(),
+        "private {}  public {}",
+        &private_b64,
+        &public_b64
+    )
 }
 
-fn main() {
+fn main() -> Result<(), io::Error> {
     let prefix = env::args().nth(1).unwrap().to_ascii_lowercase();
     let len = prefix.len() as u64;
     const WITHIN: usize = 10;
@@ -24,5 +30,5 @@ fn main() {
         .into_par_iter()
         .map(|_| trial(&prefix, WITHIN))
         .filter_map(|r| r)
-        .for_each(print);
+        .try_for_each(print)
 }
