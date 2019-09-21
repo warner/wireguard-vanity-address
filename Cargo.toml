@@ -21,7 +21,7 @@ travis-ci = { repository = "warner/wireguard-vanity-address" }
 [dependencies]
 rayon = "1.0"
 base64 = "0.10"
-rand = "0.6.0"
+rand_os = "0.1"
 x25519-dalek = "0.5.1"
 
 [dev-dependencies]
