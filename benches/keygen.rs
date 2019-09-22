@@ -5,9 +5,8 @@ use wireguard_vanity_lib::trial;
 
 fn bench_trial(bench: &mut Bencher) {
     let prefix: &str = "gratuitously long prefix that will never be found";
-    let within = 10;
     bench.iter(|| {
-        trial(&prefix, within);
+        trial(&prefix, 0, 10);
     })
 }
 
