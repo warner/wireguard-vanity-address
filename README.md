@@ -40,23 +40,26 @@ case-insensitive search to increase your chances.
 $ cargo install wireguard-vanity-address
 $ wireguard-vanity-address dave
 
-prefix: dave, expect 174762 trials, Ctrl-C to stop
-private IdNXJiaM7tOj98OiieDd2xRbu8yf7kiiR3pk4SWMEEE=  public yr2JDaVe6ZK1vkHywqpDCMrsGNc8d+nA6elF18noUSw=
-private /whCdWznKwYp0RmceUkoom5cDLTr31Lu+f1kH1jY/eg=  public uhmietdaVevBpy3OkMHlDLVHPgted8OVea/RdPK8Fzc=
-private cyFsWAmV8Glxu5VJb8w6VfMcYVjenHncqFfw9AAjQfE=  public HomPjDAVEWAiPRjpwIOlL3lANxLl+Fght830T1aIgSY=
-private qt14HDWqCpgSXHg2VcaI1TH5TfFj6oT1JAVmrw62tvQ=  public vCDaverGJfgg6iuBsQSl70Fre7QGdWVe47cuDEBommg=
-private sNd1lYl3AVEQLdefxzaHGc0gEs+tfzNGEbf/T7jC+iA=  public Uo2bDAveso7KODCdqmlgfb8pRBREEr+awT0XAHfrLEs=
-private 3+Go1RFaej19xEBPtHejZjOPjl/7hrBam8ntpka62rM=  public p25Dave1avsdf2kqe5N9ba5l68l/P5UIfjx5DVa/HB0=
-private vkHRP/xkKXYSLO9uKmzhSXxlxi/9Bnw+jbIu2rIU1Ok=  public jdaVEP1sWbWZgP53EN1xLTCWDOhu0FdDIS5KkPIuNBY=
-private 1CJUJqyQugbi1nOViLxrQaOW6acr72Bju452UXJH1Fs=  public bdaveYuRDXZTSzJvhCEgjl+7cCqtycndj938A9Y9nVg=
-private hz28Klx8T/s8HuEk2IemdwXvO39dUlEw5fiDJnK67Xc=  public IxMTDaVEVLIZxQYsvsEmRqN75Z6xjSLr2PLvaFh4HG8=
-private uayw2nhmAy/3MR6g76wd3QzrcTg2Ar6c2hckaBQxRmQ=  public 1/daveL3RqKwctapADasRFXdPsRe9mDpnDlk7gQJ+Hk=
-private nCLdMw3Hglekgq8HtbnUBU/x+Kf2gFRmMI25L7d8Cyw=  public VudaVEpJ9eetGMtwzTuGjzzdLjCzy3IvlWT1M2lKTCI=
-private de/p5FYlr/k0gR+ZxuQc6AiqdCpHNdpqLW/vT2DmX0o=  public gdAVewkiOCGxBTaKQnxxXGxvI3Bi4seGEWQu0dd28RI=
-private zQ1zsL78zXpcsC2sTic9NO1ra6M3TvV7Dmr0qB673Vo=  public IB7DavEQlPTQsFX5KbhZ8mxFUXtgFM8uz7kOVvcL+0Q=
-private K67utiFzOC83X9JxHIg+e/iLMMpCm+1KnH8eNAcwweY=  public bDAve2MMDgfsmgzeebFEGJakHAHzFoVwiauojGD8RCs=
-private 7GIB3Y/cRQQRsP5h1zfzV+Ln4cYo0B8aUKkLvteZ+ew=  public zkiFOdaVea1r2EFaWtg9yt9xrAzn/csF3/VuduiJGCs=
-private jWCtWfGdQLtmwTG6RWc0Dlx4oXM909WT4tWQYRpmR9A=  public YuKadaveihLt1pRi5tGiLzLSetLlTwcwfR315LINpDQ=
+searching for 'dave' in pubkey[0..10], one of every 149796 keys should match
+one trial takes 17.9 us, CPU cores available: 4
+est yield: 671.4 ms per key, 1.49 keys/s
+hit Ctrl-C to stop
+private cG8SfQGIK4dKZcjtFaVZT3ws7rFfwaaicborQz0IBWA=  public E6cRdAve5NmLpoH1nXjJqcVJRz9sM7cbeK4xaxYsH3o=
+private OEkbz37Ztn3Y8R1cfPRHiB9wTA6av/NRzGUuO4hxAnE=  public 0Vr/JZDAve8q+kmNVmiw4KdKiXc//M0EGOY6K9C11nw=
+private 8GBLlDECKxTk7VeZ4Mn9zQxUR+lyBzsijczQr6RjE2Y=  public QU8cNLDaVeoqLsyzKx9pFnSN4GNQMkG16TnS4e0XwFU=
+private +KmScBxM3iAfIGkqwNYmngRqDq7I1T/P7tH4SNcnqXY=  public 0VvjqadaVeruKrpTc67tuqs2fi3qcP800u5RF3G9fz8=
+private gHM5OIUCcecxJg/LIvCGTiMz6UzvZ0Q3V0QW7ngj3FI=  public gjEILdAvEfvG9Ncr14NqeRQrmT5ZJBIrbS+6FsOBiEM=
+private QGeuFWwFsCsVrVd39Yp1ItnUicyjwgkjZpvY9npE5F4=  public 6IxmSDave735au9+saEYiB+azvSBIHWfnqCWa9tI5CU=
+private OHIZd5auDHQzMFC+r3fp2pF4sstg5SQJjd9bG+QldUo=  public DAVemWOQZBonokPo7H1jiM61STpRUNYv0N0q27Uztgg=
+private UDXTYKg2yL/fjc/ces3QVorAKZnHCJm2NBTP6h9bU2Q=  public UBWDAvEwBARXYvkwsUwFVwgFoV230/0Eir+xFWR6kGU=
+private EJN1n9o3ilXW7yBPt49vNJe00NK2w6TABETX0z/o124=  public SSDAvEjMO/FpizG3/8rYqDYKFfX7no8ydi+tRrHM9ls=
+private KBnvZZ/2T+NkWzI/FODyU5P6DpA7vC/kO9d0ZiMODlE=  public 5OWaDAVEf1xzoiUomAdyCe4MI0x/XjXciqcm7rinhnQ=
+private SKE/SnG41wDgDBlEuqRpYd2UnXDph1+6cvENDd/W00o=  public XU0daveTtUZAxFpfPSrfZqp+Yv/EqXGuoSOS15iUUh8=
+private eHa22XAJYBj6PxhSkeI5BO71j3/CC9yLeM8zKyzdUV0=  public XDaVEaxYDwPmcAMGlP8CzMEnGC7oSGW3AURF5anC5gA=
+private 6Ojic3AYJFgCBIAwExBY74kOKLciJWRkXB17jTfvuWk=  public LdaVewaFPZFHV+5SGNwNdAUJjyVVyprVQs/fDuE5SR8=
+private +Hw5k1ABvrYJRoRwGizFhwP5sJcowv4pTii/V7dJ4lA=  public HVyDAvEia/j/pBMx/1mxdsCDprAjZf1U3K0Fn9zEfVk=
+private wNVk0Y2LDEmpcNyBIOtmco87v+9hdquSKFnOYyyfY2Y=  public kdavEA7x1CduyJ9+WpfDF5QG1ZSOI4NiduVBTAniB0Y=
+private kPCNY3QiCsOLakmh8CPsu6QPMW3MtkFwKP+HKDsOpnA=  public daVE11aF7bx40NqwQqV14hxydDwiv4rC0JPhEVxAKnM=
 ...
 ```
 
@@ -83,8 +86,8 @@ character of the target string reduces this fraction by a factor of about 32
 first ten letters, we increase the hit rate by about 10x.
 
 A four-character string like `dave` means only one out of every (roughly)
-100k keys will match, while a five-character string like `carol` reduces that
-to one out of 3.3 million. Longer strings will yield fewer candidate keypairs
+150k keys will match, while a five-character string like `carol` reduces that
+to one out of 5.6 million. Longer strings will yield fewer candidate keypairs
 for a given amount of runtime.
 
 You can run this on multiple machines, but of course you then risk revealing
