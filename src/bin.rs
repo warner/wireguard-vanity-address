@@ -140,7 +140,11 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     if trials_per_key < 2u64.pow(32) {
         let est = estimate_one_trial();
-        println!("one trial takes {}", format_time(duration_to_f64(est)));
+        println!(
+            "one trial takes {}, CPU cores available: {}",
+            format_time(duration_to_f64(est)),
+            num_cpus::get()
+        );
         let spk = duration_to_f64(
             est // sec/trial on one core
                 .checked_div(num_cpus::get() as u32) // sec/trial with all cores
