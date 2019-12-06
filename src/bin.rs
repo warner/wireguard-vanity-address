@@ -111,10 +111,7 @@ fn main() -> Result<(), Box<dyn Error>> {
         }
     });
     if end < len {
-        Err(ParseError(format!(
-            "range {} is too short for len={}",
-            end, len
-        )))?
+        return Err(ParseError(format!("range {} is too short for len={}", end, len)).into());
     }
 
     let offsets: u64 = 44.min((1 + end - len) as u64);
