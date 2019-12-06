@@ -1,10 +1,9 @@
 use base64;
-use rand::thread_rng;
+use rand_core::OsRng;
 use x25519_dalek::{PublicKey, StaticSecret};
 
 pub fn trial(prefix: &str, start: usize, end: usize) -> Option<(String, String)> {
-    let mut rng = thread_rng();
-    let private = StaticSecret::new(&mut rng);
+    let private = StaticSecret::new(&mut OsRng);
     let public = PublicKey::from(&private);
     let public_b64 = base64::encode(public.as_bytes());
     if public_b64[start..end]
