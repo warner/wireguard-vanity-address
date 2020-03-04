@@ -1,27 +1,12 @@
 use std::error::Error;
 use std::fmt;
 use std::io::{self, Write};
-use std::time::{Duration, SystemTime};
 
 use clap::{App, AppSettings, Arg};
 use num_cpus;
 use rayon::prelude::*;
-use wireguard_vanity_lib::trial;
-
-fn estimate_one_trial() -> Duration {
-    let prefix = "prefix";
-    let start = SystemTime::now();
-    const COUNT: u32 = 100;
-    (0..COUNT).for_each(|_| {
-        trial(&prefix, 0, 10);
-    });
-    let elapsed = start.elapsed().unwrap();
-    elapsed.checked_div(COUNT).unwrap()
-}
-
-fn duration_to_f64(d: Duration) -> f64 {
-    (d.as_secs() as f64) + (f64::from(d.subsec_nanos()) * 1e-9)
-}
+use wireguard_vanity_lib::{measure_rate, search_for_prefix};
+use x25519_dalek::{PublicKey, StaticSecret};
 
 fn format_time(t: f64) -> String {
     if t > 3600.0 {
@@ -61,8 +46,11 @@ fn format_rate(rate: f64) -> String {
     }
 }
 
-fn print(res: (String, String)) -> Result<(), io::Error> {
-    let (private_b64, public_b64) = res;
+fn print(res: (StaticSecret, PublicKey)) -> Result<(), io::Error> {
+    let private: StaticSecret = res.0;
+    let public: PublicKey = res.1;
+    let private_b64 = base64::encode(&private.to_bytes());
+    let public_b64 = base64::encode(public.as_bytes());
     writeln!(
         io::stdout(),
         "private {}  public {}",
@@ -131,29 +119,22 @@ fn main() -> Result<(), Box<dyn Error>> {
         &prefix, end, trials_per_key
     );
 
-    // todo: dividing by num_cpus will overestimate performance when the
-    // cores aren't actually distinct (hyperthreading?). My Core-i7 seems to
-    // run at half the speed that this predicts.
+    // get_physical() appears to be more accurate: hyperthreading doesn't
+    // help us much
 
     if trials_per_key < 2u64.pow(32) {
-        let est = estimate_one_trial();
+        let raw_rate = measure_rate();
         println!(
-            "one trial takes {}, CPU cores available: {}",
-            format_time(duration_to_f64(est)),
-            num_cpus::get()
+            "one core runs at {}, CPU cores available: {}",
+            format_rate(raw_rate),
+            num_cpus::get_physical(),
         );
-        let spk = duration_to_f64(
-            est // sec/trial on one core
-                .checked_div(num_cpus::get() as u32) // sec/trial with all cores
-                .unwrap()
-                .checked_mul(trials_per_key as u32) // sec/key (Duration)
-                .unwrap(),
-        );
-        let kps = 1.0 / spk;
+        let total_rate = raw_rate * (num_cpus::get_physical() as f64) / (trials_per_key as f64);
+        let seconds_per_key = 1.0 / total_rate;
         println!(
             "est yield: {} per key, {}",
-            format_time(spk),
-            format_rate(kps)
+            format_time(seconds_per_key),
+            format_rate(total_rate)
         );
     }
 
@@ -162,8 +143,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     // 1M trials takes about 10s on my laptop, so let it run for 1000s
     (0..100_000_000)
         .into_par_iter()
-        .map(|_| trial(&prefix, 0, end))
-        .filter_map(|r| r)
+        .map(|_| search_for_prefix(&prefix, 0, end))
         .try_for_each(print)?;
     Ok(())
 }
