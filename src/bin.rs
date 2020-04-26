@@ -8,12 +8,11 @@ use num_cpus;
 use rayon::prelude::*;
 use wireguard_vanity_lib::trial;
 
-fn estimate_one_trial() -> Duration {
-    let prefix = "prefix";
+fn estimate_one_trial(prefix: &str, end: usize, case_sensitive: bool) -> Duration {
     let start = SystemTime::now();
     const COUNT: u32 = 100;
     (0..COUNT).for_each(|_| {
-        trial(&prefix, 0, 10);
+        trial(&prefix, end, case_sensitive);
     });
     let elapsed = start.elapsed().unwrap();
     elapsed.checked_div(COUNT).unwrap()
@@ -87,10 +86,15 @@ fn main() -> Result<(), Box<dyn Error>> {
         .author("Brian Warner <warner@lothar.com>")
         .about("finds Wireguard keypairs with a given string prefix")
         .arg(
+            Arg::with_name("CASE")
+                .long("case-sensitive")
+                .help("Use case-sensitive matching"),
+        )
+        .arg(
             Arg::with_name("RANGE")
                 .long("in")
                 .takes_value(true)
-                .help("NAME must be found within first RANGE chars of pubkey (default: 10)"),
+                .help("NAME must be found within first RANGE chars of pubkey (default: 10, 0 means actual prefix)"),
         )
         .arg(
             Arg::with_name("NAME")
@@ -98,6 +102,7 @@ fn main() -> Result<(), Box<dyn Error>> {
                 .help("string to find near the start of the pubkey"),
         )
         .get_matches();
+    let case_sensitive = matches.is_present("CASE");
     let prefix = matches.value_of("NAME").unwrap().to_ascii_lowercase();
     let len = prefix.len();
     let end: usize = 44.min(match matches.value_of("RANGE") {
@@ -110,6 +115,7 @@ fn main() -> Result<(), Box<dyn Error>> {
             }
         }
     });
+    let end = if end == 0 { len } else { end };
     if end < len {
         return Err(ParseError(format!("range {} is too short for len={}", end, len)).into());
     }
@@ -119,7 +125,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     let mut num = offsets;
     let mut denom = 1u64;
     prefix.chars().for_each(|c| {
-        if c.is_ascii_alphabetic() {
+        if !case_sensitive && c.is_ascii_alphabetic() {
             num *= 2; // letters can match both uppercase and lowercase
         }
         denom *= 64; // base64
@@ -136,7 +142,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     // run at half the speed that this predicts.
 
     if trials_per_key < 2u64.pow(32) {
-        let est = estimate_one_trial();
+        let est = estimate_one_trial(&prefix, end, case_sensitive);
         println!(
             "one trial takes {}, CPU cores available: {}",
             format_time(duration_to_f64(est)),
@@ -162,7 +168,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     // 1M trials takes about 10s on my laptop, so let it run for 1000s
     (0..100_000_000)
         .into_par_iter()
-        .map(|_| trial(&prefix, 0, end))
+        .map(|_| trial(&prefix, end, case_sensitive))
         .filter_map(|r| r)
         .try_for_each(print)?;
     Ok(())
