@@ -102,6 +102,24 @@ search string, and don't try too hard to find a perfect pubkey. You only need
 something distinctive enough distinguish between a handful of VPN targets in
 a status display.
 
+## Dockerfile
+
+This repo contains a Dockerfile for running the binary so you
+don't have to install rust or other build tools.
+To use it:
+
+```
+docker build -t wgvanity .       # to build the container
+
+docker run wgvanity [ string ]   # optional string for the "vanity address"
+```
+After you find a suitable public key (with a good vanity address),
+you will need to stop the docker container by opening a new terminal session and entering: 
+
+```
+docker ps                    # to find the currently-running container
+docker stop container_name   # to stop it
+```
 ## License
 
 This is distributed under the MIT license, see [LICENSE](LICENSE.md) for
