@@ -109,9 +109,9 @@ don't have to install rust or other build tools.
 To use it:
 
 ```
-docker build -t wgvanity .       # to build the container
+docker build -t wgvanity .          # to build the container
 
-docker run wgvanity [ string ]   # optional string for the "vanity address"
+docker run --rm wgvanity "string"   # string for the "vanity address"
 ```
 After you find a suitable public key (with a good vanity address),
 you will need to stop the docker container by opening a new terminal session and entering: 
@@ -122,5 +122,5 @@ docker stop container_name   # to stop it
 ```
 ## License
 
-This is distributed under the MIT license, see [LICENSE](LICENSE.md) for
-details.
+This is distributed under the MIT license,
+see [LICENSE](LICENSE.md) for details.
