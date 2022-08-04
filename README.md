@@ -111,15 +111,11 @@ To use it:
 ```
 docker build -t wgvanity .          # to build the container
 
-docker run --rm wgvanity "string"   # string for the "vanity address"
+docker run --rm --init -it wgvanity "string"   # string for the "vanity address"
 ```
 After you find a suitable public key (with a good vanity address),
-you will need to stop the docker container by opening a new terminal session and entering: 
+hit Control-C to abort 
 
-```
-docker ps                    # to find the currently-running container
-docker stop container_name   # to stop it
-```
 ## License
 
 This is distributed under the MIT license,
