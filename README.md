@@ -63,6 +63,17 @@ private kPCNY3QiCsOLakmh8CPsu6QPMW3MtkFwKP+HKDsOpnA=  public daVE11aF7bx40NqwQqV
 ...
 ```
 
+## Even better - find that string at the start of the key
+
+To simplify tracking these keys,
+it's easier to look only at the keys that _start_
+with the desired string.
+Fill in that string ("dave") in _two_ places in the line below.
+
+`wireguard-vanity-address dave | grep 'public dave'`
+
+## How it works
+
 The tool will run for a long time, printing out more and more candidates as
 it goes, so just interrupt the process with Control-C or SIGINT when you've
 seen something that you like. There is no saved state or config file, and the
@@ -113,8 +124,19 @@ docker build -t wgvanity .          # to build the container
 
 docker run --rm --init -it wgvanity "string"   # string for the "vanity address"
 ```
+
 After you find a suitable public key (with a good vanity address),
 hit Control-C to abort 
+
+## Cross-platform - macOS on Intel and Apple Silicon
+
+The Dockerfile is written to work on both Intel Macs and Apple Silicon Macs.
+If you want to publish a multi-architecture image for both `linux/amd64` and
+`linux/arm64`, use Docker Buildx:
+
+```
+docker buildx build --platform linux/amd64,linux/arm64 -t yourname/wgvanity:latest --push .
+```
 
 ## License
 
